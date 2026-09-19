@@ -6,7 +6,7 @@ using machine-learning techniques.
 
 ## 🚀 Live Demo
 
-[Open the CloudOps Monitoring Dashboard](https://cloudops-monitoring-dvcji98u8nxrtjwxhdvuwt.streamlit.app/)
+[Open the CloudOps Monitoring Dashboard](https://cloudops-monitoring.onrender.com)
 
 ## 📌 Project Overview
 
