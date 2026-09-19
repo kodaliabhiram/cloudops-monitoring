@@ -1,19 +1,31 @@
 # ☁️ CloudOps Monitoring & ML Anomaly Detection
 
-A Python-based cloud infrastructure monitoring dashboard that tracks CPU, memory, and disk utilization and detects abnormal resource usage using machine-learning techniques.
+A Python-based cloud infrastructure monitoring application that tracks CPU, memory, and disk utilization and detects abnormal resource usage using machine-learning techniques.
 
 ## 🚀 Live Demo
 
-**Live Dashboard:**  
+**CloudOps Monitoring Dashboard:**
+
 https://cloudops-monitoring.onrender.com
 
 ---
 
 ## 📌 Project Overview
 
-CloudOps Monitoring is a monitoring and anomaly-detection application designed to provide a real-time style view of cloud infrastructure health.
+CloudOps Monitoring is a monitoring and anomaly-detection application designed to provide a real-time-style view of cloud infrastructure health.
 
-The application collects infrastructure metrics, analyzes resource utilization, detects abnormal behavior, and presents the results through an interactive Streamlit dashboard.
+The application:
+
+- 📊 Monitors CPU utilization
+- 💾 Monitors memory utilization
+- 💿 Monitors disk utilization
+- 🚨 Detects abnormal resource usage
+- 🤖 Uses machine-learning-based anomaly detection
+- 📈 Displays infrastructure metrics through an interactive dashboard
+- ⚡ Provides monitoring data through a FastAPI backend
+- 🐳 Supports Docker-based deployment
+
+The dashboard is built using Streamlit, while the backend API is implemented using FastAPI.
 
 ---
 
@@ -24,30 +36,38 @@ The application collects infrastructure metrics, analyzes resource utilization, 
 - 💿 Disk utilization monitoring
 - 🚨 Resource anomaly detection
 - 📈 Interactive monitoring charts
-- 🌐 Streamlit web dashboard
-- ⚡ FastAPI backend
-- 🤖 Machine-learning-based anomaly detection
+- 🤖 Machine-learning anomaly detection using Isolation Forest
+- ⚡ FastAPI monitoring API
+- 🖥️ Streamlit web dashboard
 - 🐳 Docker containerization
 - ☁️ Cloud deployment using Render
+- 🧪 Automated testing support
 
 ---
 
 ## 🏗️ Architecture
 
 ```text
-Infrastructure Metrics
-        ↓
-Python Backend
-        ↓
-Metric Processing
-        ↓
-Anomaly Detection
-        ↓
-FastAPI API
-        ↓
-Streamlit Dashboard
-        ↓
-Monitoring & Visualization
+                    CloudOps Monitoring
+                           │
+                           ▼
+                  Monitoring Data
+                           │
+             ┌─────────────┴─────────────┐
+             │                           │
+             ▼                           ▼
+       Metric Processing          Anomaly Detection
+             │                           │
+             └─────────────┬─────────────┘
+                           │
+                           ▼
+                     FastAPI API
+                           │
+                           ▼
+                  Streamlit Dashboard
+                           │
+                           ▼
+                  Monitoring & Visualization
 ```
 
 ---
@@ -55,56 +75,223 @@ Monitoring & Visualization
 ## 🛠️ Technology Stack
 
 | Technology | Purpose |
-|------------|---------|
-| Python | Application development |
+|---|---|
+| Python | Core programming language |
 | Streamlit | Monitoring dashboard |
-| FastAPI | Backend API |
-| Scikit-learn | Machine learning / anomaly detection |
+| FastAPI | REST API backend |
+| Uvicorn | FastAPI server |
 | Pandas | Data processing |
-| NumPy | Numerical processing |
-| Plotly | Data visualization |
+| NumPy | Numerical computation |
+| Plotly | Interactive charts |
+| Scikit-learn | Machine learning and anomaly detection |
 | Docker | Containerization |
 | Render | Cloud deployment |
+| Pytest | Testing |
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```text
 cloudops-monitoring/
 │
 ├── app.py
+│   └── Streamlit monitoring dashboard
+│
 ├── api.py
+│   └── FastAPI backend and monitoring endpoints
+│
 ├── requirements.txt
+│   └── Python dependencies
+│
 ├── Dockerfile
+│   └── Docker container configuration
+│
 ├── .dockerignore
+│   └── Files excluded from Docker build context
+│
 └── README.md
+    └── Project documentation
 ```
 
-### File Description
+---
 
-- `app.py` — Streamlit monitoring dashboard
-- `api.py` — FastAPI backend
-- `requirements.txt` — Python dependencies
-- `Dockerfile` — Docker configuration for deployment
-- `.dockerignore` — Files excluded from the Docker build context
-- `README.md` — Project documentation
+## 📊 Monitoring Dashboard
+
+The Streamlit dashboard provides a visual overview of infrastructure metrics.
+
+### CPU Monitoring
+
+The dashboard displays CPU utilization over time and includes a warning threshold for identifying high resource usage.
+
+### Memory Monitoring
+
+Memory utilization is displayed to help identify increasing or abnormal memory consumption.
+
+### Disk Monitoring
+
+Disk utilization is monitored to identify potential storage-related resource issues.
+
+### Anomaly Detection
+
+The application uses the **Isolation Forest** machine-learning algorithm from Scikit-learn to identify unusual resource utilization patterns.
+
+Detected anomalies are displayed in the dashboard.
 
 ---
 
-## 🤖 Anomaly Detection
+## 🤖 Machine Learning
 
-The application analyzes infrastructure resource utilization and identifies unusual behavior using machine-learning techniques.
+The project uses the **Isolation Forest** algorithm for anomaly detection.
 
-The dashboard displays detected anomalies alongside resource utilization metrics to help identify abnormal system behavior.
+Isolation Forest is an unsupervised machine-learning algorithm that identifies observations that differ significantly from normal observations.
+
+The monitoring pipeline can be summarized as:
+
+```text
+Monitoring Metrics
+       │
+       ▼
+Data Processing
+       │
+       ▼
+Feature Preparation
+       │
+       ▼
+Isolation Forest
+       │
+       ▼
+Anomaly Detection
+       │
+       ▼
+Dashboard Visualization
+```
 
 ---
 
-## 🐳 Docker
+## ⚡ FastAPI Backend
 
-The application includes a Dockerfile for containerized deployment.
+The project includes a FastAPI backend that exposes monitoring information through API endpoints.
 
-The container runs the Streamlit dashboard on port `8501`.
+### Health Check
+
+```http
+GET /
+```
+
+Returns the current API health status.
+
+Example response:
+
+```json
+{
+  "message": "CloudOps Monitoring API is running",
+  "status": "healthy"
+}
+```
+
+### Metrics Endpoint
+
+```http
+GET /metrics
+```
+
+Returns monitoring metrics and anomaly information.
+
+Example response structure:
+
+```json
+{
+  "metrics": {},
+  "anomalies": [],
+  "anomaly_detected": true
+}
+```
+
+The exact metric values are generated by the application at runtime.
+
+---
+
+## 💻 Running Locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/kodaliabhiram/cloudops-monitoring.git
+```
+
+### 2. Move into the project directory
+
+```bash
+cd cloudops-monitoring
+```
+
+### 3. Create a virtual environment
+
+Windows:
+
+```bash
+python -m venv venv
+```
+
+Activate it:
+
+```bash
+venv\Scripts\activate
+```
+
+Linux/macOS:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 4. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Run the Streamlit dashboard
+
+```bash
+streamlit run app.py
+```
+
+The dashboard will normally be available at:
+
+```text
+http://localhost:8501
+```
+
+---
+
+## 🔌 Running the FastAPI Backend
+
+Start the API using Uvicorn:
+
+```bash
+uvicorn api:app --reload
+```
+
+The API will normally be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+FastAPI also provides interactive API documentation at:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+---
+
+## 🐳 Running with Docker
+
+The project includes a Dockerfile for containerized deployment.
 
 ### Build the Docker image
 
@@ -112,115 +299,158 @@ The container runs the Streamlit dashboard on port `8501`.
 docker build -t cloudops-monitoring .
 ```
 
-### Run the Docker container
+### Run the container
 
 ```bash
 docker run -p 8501:8501 cloudops-monitoring
 ```
 
-The dashboard can then be accessed at:
+Open:
 
 ```text
 http://localhost:8501
 ```
+
+The Docker container runs the Streamlit dashboard on port `8501`.
 
 ---
 
 ## ☁️ Deployment
 
-The application is deployed using Docker on Render.
+The application is deployed using:
+
+- Docker
+- Render
+- Streamlit
+- Python
 
 ### Live Application
 
 https://cloudops-monitoring.onrender.com
 
-### Deployment Stack
+The Docker configuration exposes port `8501` and starts the Streamlit application using:
 
-- Python
-- Streamlit
-- FastAPI
-- Docker
-- Render
-- Machine Learning
+```bash
+streamlit run app.py --server.address=0.0.0.0 --server.port=8501
+```
 
 ---
 
-## ▶️ Run Locally Without Docker
+## 📦 Dependencies
 
-### 1. Clone the repository
+The project uses the following Python packages:
 
-```bash
-git clone https://github.com/kodaliabhiram/cloudops-monitoring.git
-cd cloudops-monitoring
+```text
+boto3
+pandas
+numpy
+scikit-learn
+fastapi
+uvicorn
+streamlit
+plotly
+python-dotenv
+pytest
 ```
 
-### 2. Install dependencies
+Install all dependencies with:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Start the Streamlit dashboard
+---
+
+## 🧪 Testing
+
+The project includes `pytest` as a testing dependency.
+
+Tests can be executed using:
 
 ```bash
-streamlit run app.py
-```
-
-The dashboard will be available at:
-
-```text
-http://localhost:8501
+pytest
 ```
 
 ---
 
-## 🔌 FastAPI Backend
+## 🔐 Environment Variables
 
-The project also includes a FastAPI backend.
+Environment-specific configuration can be stored using environment variables.
 
-To start the API locally:
+Do not commit sensitive credentials or secrets to GitHub.
 
-```bash
-uvicorn api:app --reload
-```
-
-The API will be available at:
+The project's `.dockerignore` excludes local environment and Streamlit secret files such as:
 
 ```text
-http://127.0.0.1:8000
+.env
+.venv
+venv
+.streamlit/secrets.toml
 ```
 
 ---
 
-## 📊 Dashboard
+## 🔄 Application Workflow
 
-The dashboard provides monitoring information such as:
+```text
+        Start Application
+              │
+              ▼
+      Generate Monitoring Data
+              │
+              ▼
+     Process Infrastructure Metrics
+              │
+              ▼
+       Detect Abnormal Usage
+              │
+              ▼
+       Isolation Forest Model
+              │
+              ▼
+       ┌──────┴──────┐
+       │             │
+       ▼             ▼
+   FastAPI       Streamlit
+       │             │
+       └──────┬──────┘
+              ▼
+       Monitoring Results
+```
 
-- CPU usage
-- Memory usage
-- Disk usage
-- Resource utilization trends
-- Warning thresholds
-- Detected anomalies
+---
 
-The live dashboard is available here:
+## 🎯 Use Cases
 
-**https://cloudops-monitoring.onrender.com**
+CloudOps Monitoring can be used as a learning and demonstration project for:
+
+- Cloud infrastructure monitoring
+- DevOps monitoring concepts
+- Machine-learning anomaly detection
+- Python-based dashboards
+- REST API development
+- Docker deployment
+- Cloud application deployment
+- Infrastructure observability concepts
 
 ---
 
 ## 🔮 Future Improvements
 
-Possible improvements include:
+Possible future enhancements include:
 
+- Real AWS infrastructure metrics
 - AWS CloudWatch integration
-- Real-time cloud infrastructure metrics
-- Email or Slack alerts
-- Persistent metric storage
-- Advanced anomaly-detection models
 - Kubernetes monitoring
-- Automated CI/CD deployment
-- Authentication and user management
+- Prometheus integration
+- Grafana dashboards
+- Alert notifications through email or Slack
+- Persistent metric storage
+- Historical monitoring data
+- User authentication
+- Configurable anomaly thresholds
+- Multiple server/node monitoring
+- Automated incident detection and alerting
 
 ---
 
@@ -228,7 +458,8 @@ Possible improvements include:
 
 **Abhiram Kodali**
 
-GitHub:  
+GitHub:
+
 https://github.com/kodaliabhiram
 
 ---
