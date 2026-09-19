@@ -46,3 +46,27 @@ FastAPI API
 Streamlit Dashboard
         ↓
 Monitoring & Visualization
+
+## 🚀 Deployment
+
+The application is deployed using Docker on Render.
+
+### Live Application
+👉 https://cloudops-monitoring.onrender.com
+
+### Deployment Stack
+- 🐍 Python
+- 🎈 Streamlit
+- ⚡ FastAPI
+- 🐳 Docker
+- ☁️ Render
+- 🤖 Machine Learning anomaly detection
+
+### Docker
+The project includes a Dockerfile for containerized deployment.
+
+The Docker container runs the Streamlit dashboard on port `8501`.
+
+```bash
+docker build -t cloudops-monitoring .
+docker run -p 8501:8501 cloudops-monitoring
