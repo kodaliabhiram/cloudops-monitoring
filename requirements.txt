@@ -1,0 +1,10 @@
+boto3
+pandas
+numpy
+scikit-learn
+fastapi
+uvicorn
+streamlit
+plotly
+python-dotenv
+pytest
